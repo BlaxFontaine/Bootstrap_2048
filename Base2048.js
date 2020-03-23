@@ -62,22 +62,34 @@
                         tab.push(parseInt(val[0].innerText));
                       }
 
-                      console.log(tab);
+
                       //// checker si tableau de 0 -> on ne fait rien
+                      let sum = tab.reduce((a,b) => a + b, 0);
+
+                      tab = tab.filter(item => item !== 0);
+
                       //// on regarde les cases 2 par 2: 0 1, 1 2, 2 3, 3 4
-                      //// si une paire est égale, la 1ère valeur est doublée et la 2ème égale à 0
-                      //// à la fin s'il y a des 0, on les met à la fin et les autres au début
+                      if (sum != 0) {
+                        let newTab = [];
+                        for (let k = 0; k < tab.length; k++) {
+                          if (tab[k] == tab[k + 1]) {
+                            newTab[k] = tab[k] * 2;
+                            newTab[k + 1] = 0;
+                          } else if (tab[k] == 0) {
+                            newTab[k] = 0;
+                          } else {
+                            newTab[k] = tab[k];
+                          }
+                        }
+                      } else {
+                        let newTab = [0, 0, 0, 0];
+                      }
+
                       //// on affecte les valeur du tableau à la ligne
 
                     }
 
-                    //// vérifier si la ligne est vide
-                    //// si oui -> on ne fait rien
-                    //// si non:
-                    ////// vérifier si la première case de la ligne est vide
-                    ////// si oui -> la première case non vide prend sa place
-                    //////// ensuite -> la prochaine case non vide se colle à celle-ci
-                    //////// si elles sont du même chiffre -> on multiplie la 1ère case par deux et on supprime la 2ème
+
                     console.log("Left");
                     break;
                 case 'ArrowUp':
