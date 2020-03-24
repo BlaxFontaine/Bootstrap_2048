@@ -3,6 +3,7 @@ table {
     padding: 15px;
     border-spacing: 10px;
     border: solid 5px darkgrey;
+    font-size: 40px;
 }
 
 td {

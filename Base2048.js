@@ -56,16 +56,65 @@
                       //// récupérer les valeurs de la ligne
                       let tab = [];
                       for (let j = 0; j < 4; j++) {
-                      //// créer un tableau avec les valeurs de la ligne [0,0,0,0]
+                      //// créer un tableau avec les valeurs de la ligne
                         let val = $('[x="' + j + '"][y="' + i + '"]');
-                        // console.log(val[0].innerText);
                         tab.push(parseInt(val[0].innerText));
                       }
-
 
                       //// checker si tableau de 0 -> on ne fait rien
                       let sum = tab.reduce((a,b) => a + b, 0);
 
+                      //// enlever les 0
+                      tab = tab.filter(item => item !== 0);
+
+                      let newTab = [];
+
+                      if (sum != 0) {
+                        for (let k = 0; k < tab.length; k++) {
+                          if (tab[k] == tab[k + 1]) {
+                            newTab[k] = tab[k] * 2;
+                            newTab[k + 1] = 0;
+                            tab[k + 1] = 0
+                          } else if (tab[k] == 0) {
+                            newTab[k] = 0;
+                          } else {
+                            newTab[k] = tab[k];
+                          }
+                        }
+                        newTab = newTab.filter(item => item !== 0);
+                        let n = newTab.length;
+                        for (let l = n; l < 4; l++) {
+                          newTab[l] = 0;
+                        }
+                      } else {
+                        newTab = [0, 0, 0, 0];
+                      }
+
+                      //// on affecte les valeur du tableau à la ligne
+                      for (let z = 0; z < 4; z++) {
+                        var elem = $('[x="' + z + '"][y="' + i + '"]');
+                        elem.attr('nbr', newTab[z]); // on change la valeur de l'attr nbr
+                        elem.text(newTab[z]);
+                      }
+                    }
+
+                    console.log("Left");
+                    break;
+                case 'ArrowUp':
+                    // insérer algo move up
+                    for (let i = 0; i < 4; i++) {
+                      //// récupérer les valeurs de la ligne
+                      let tab = [];
+                      for (let j = 0; j < 4; j++) {
+                      //// créer un tableau avec les valeurs de la ligne
+                        let val = $('[x="' + i + '"][y="' + j + '"]');
+                        tab.push(parseInt(val[0].innerText));
+                      }
+
+                      //// checker si tableau de 0 -> on ne fait rien
+                      let sum = tab.reduce((a,b) => a + b, 0);
+
+                      //// enlever les 0
                       tab = tab.filter(item => item !== 0);
 
                       //// on regarde les cases 2 par 2: 0 1, 1 2, 2 3, 3 4
@@ -77,13 +126,13 @@
                             newTab[k] = tab[k] * 2;
                             newTab[k + 1] = 0;
                             tab[k + 1] = 0
-
                           } else if (tab[k] == 0) {
                             newTab[k] = 0;
                           } else {
                             newTab[k] = tab[k];
                           }
                         }
+                        newTab = newTab.filter(item => item !== 0);
                         let n = newTab.length;
                         for (let l = n; l < 4; l++) {
                           newTab[l] = 0;
@@ -93,32 +142,114 @@
                       }
 
                       //// on affecte les valeur du tableau à la ligne
-
                       for (let z = 0; z < 4; z++) {
-                        var elem = $('[x="' + z + '"][y="' + i + '"]');
-
+                        var elem = $('[x="' + i + '"][y="' + z + '"]');
                         elem.attr('nbr', newTab[z]); // on change la valeur de l'attr nbr
-
                         elem.text(newTab[z]);
                       }
                     }
-
-                    console.log("Left");
-                    break;
-                case 'ArrowUp':
-                    // insérer algo move up
                     console.log("Up");
                     break;
                 case 'ArrowRight':
                     // insérer algo move right
+                    for (let i = 0; i < 4; i++) {
+                      //// récupérer les valeurs de la ligne
+                      let tab = [];
+                      for (let j = 0; j < 4; j++) {
+                      //// créer un tableau avec les valeurs de la ligne
+                        let val = $('[x="' + j + '"][y="' + i + '"]');
+                        tab.push(parseInt(val[0].innerText));
+                      }
+
+                      //// checker si tableau de 0 -> on ne fait rien
+                      let sum = tab.reduce((a,b) => a + b, 0);
+
+                      //// enlever les 0
+                      tab = tab.filter(item => item !== 0);
+                      let newTab = [];
+                      if (sum != 0) {
+                        let p = tab.length;
+                        newTab.length = p;
+                        for (let k = (p - 1); k >= 0; k--) {
+                          if (tab[k] == tab[k - 1]) {
+                            newTab[k] = tab[k] * 2;
+                            tab[k - 1] = 0
+                          } else if (tab[k] == 0) {
+                            newTab[k] = tab[k - 1];
+                            tab[k - 1] = 0;
+                          } else {
+                            newTab[k] = tab[k];
+                          }
+                        }
+                        newTab = newTab.filter(item => item !== 0);
+                        let n = newTab.length;
+                        for (let l = 0; l < 4 - n; l++) {
+                          newTab.unshift(0);
+                        }
+                      } else {
+                        newTab = [0, 0, 0, 0];
+                      }
+
+                      //// on affecte les valeur du tableau à la ligne
+                      for (let z = 0; z < 4; z++) {
+                        var elem = $('[x="' + z + '"][y="' + i + '"]');
+                        elem.attr('nbr', newTab[z]); // on change la valeur de l'attr nbr
+                        elem.text(newTab[z]);
+                      }
+                    }
                     console.log("Right");
                     break;
                 case 'ArrowDown':
                     // insérer algo move down
+                    for (let i = 0; i < 4; i++) {
+                      //// récupérer les valeurs de la ligne
+                      let tab = [];
+                      for (let j = 0; j < 4; j++) {
+                      //// créer un tableau avec les valeurs de la ligne
+                        let val = $('[x="' + j + '"][y="' + i + '"]');
+                        tab.push(parseInt(val[0].innerText));
+                      }
+
+                      //// checker si tableau de 0 -> on ne fait rien
+                      let sum = tab.reduce((a,b) => a + b, 0);
+
+                      //// enlever les 0
+                      tab = tab.filter(item => item !== 0);
+                      let newTab = [];
+                      if (sum != 0) {
+                        let p = tab.length;
+                        newTab.length = p;
+                        for (let k = (p - 1); k >= 0; k--) {
+                          if (tab[k] == tab[k - 1]) {
+                            newTab[k] = tab[k] * 2;
+                            tab[k - 1] = 0
+                          } else if (tab[k] == 0) {
+                            newTab[k] = tab[k - 1];
+                            tab[k - 1] = 0;
+                          } else {
+                            newTab[k] = tab[k];
+                          }
+                        }
+                        newTab = newTab.filter(item => item !== 0);
+                        let n = newTab.length;
+                        for (let l = 0; l < 4 - n; l++) {
+                          newTab.unshift(0);
+                        }
+                      } else {
+                        newTab = [0, 0, 0, 0];
+                      }
+
+                      //// on affecte les valeur du tableau à la ligne
+                      for (let z = 0; z < 4; z++) {
+                        var elem = $('[x="' + z + '"][y="' + i + '"]');
+                        elem.attr('nbr', newTab[z]); // on change la valeur de l'attr nbr
+                        elem.text(newTab[z]);
+                      }
+                    }
                     console.log("Down");
                     break;
             }
-                    generateCell(1);
+            generateCell(1);
         });
 
         // début du code lancé
