@@ -69,26 +69,39 @@
                       tab = tab.filter(item => item !== 0);
 
                       //// on regarde les cases 2 par 2: 0 1, 1 2, 2 3, 3 4
+                      let newTab = [];
+
                       if (sum != 0) {
-                        let newTab = [];
                         for (let k = 0; k < tab.length; k++) {
                           if (tab[k] == tab[k + 1]) {
                             newTab[k] = tab[k] * 2;
                             newTab[k + 1] = 0;
+                            tab[k + 1] = 0
+
                           } else if (tab[k] == 0) {
                             newTab[k] = 0;
                           } else {
                             newTab[k] = tab[k];
                           }
                         }
+                        let n = newTab.length;
+                        for (let l = n; l < 4; l++) {
+                          newTab[l] = 0;
+                        }
                       } else {
-                        let newTab = [0, 0, 0, 0];
+                        newTab = [0, 0, 0, 0];
                       }
 
                       //// on affecte les valeur du tableau à la ligne
 
-                    }
+                      for (let z = 0; z < 4; z++) {
+                        var elem = $('[x="' + z + '"][y="' + i + '"]');
 
+                        elem.attr('nbr', newTab[z]); // on change la valeur de l'attr nbr
+
+                        elem.text(newTab[z]);
+                      }
+                    }
 
                     console.log("Left");
                     break;
@@ -105,6 +118,7 @@
                     console.log("Down");
                     break;
             }
+                    generateCell(1);
         });
 
         // début du code lancé
