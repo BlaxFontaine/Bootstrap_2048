@@ -12,3 +12,65 @@ td {
     border: solid 2px darkgrey;
     text-align: center;
 }
+
+td[nbr="0"] {
+  background-color: #F5F5F5;
+}
+
+td[nbr="2"] {
+  background-color: #4CAF50;
+}
+
+td[nbr="4"] {
+  background-color: #8BC34A;
+}
+
+td[nbr="8"] {
+  background-color: #CDDC39;
+}
+
+td[nbr="16"] {
+  background-color: #FFEB3B;
+}
+
+td[nbr="32"] {
+  background-color: #FFC107;
+}
+
+td[nbr="64"] {
+  background-color: #009688;
+}
+
+td[nbr="128"] {
+  background-color: #00BCD4;
+}
+
+td[nbr="256"] {
+  background-color: #03A9F4;
+}
+
+td[nbr="512"] {
+  background-color: #448AFF;
+}
+
+td[nbr="1024"] {
+  background-color: #536DFE;
+}
+
+td[nbr="2048"] {
+  background-color: #673AB7;
+}
+
+/*
+vert foncé: #4CAF50
+vert light: #8BC34A
+vert lime: #CDDC39
+jaune: #FFEB3B
+ambre: #FFC107
+teal: #009688
+cyan: #00BCD4
+light blue: #03A9F4
+blue: #448AFF
+indigo: #536DFE
+deep purple: #673AB7
+*/

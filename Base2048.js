@@ -173,6 +173,7 @@
                         for (let k = (p - 1); k >= 0; k--) {
                           if (tab[k] == tab[k - 1]) {
                             newTab[k] = tab[k] * 2;
+                            newTab[k - 1] = 0;
                             tab[k - 1] = 0
                           } else if (tab[k] == 0) {
                             newTab[k] = tab[k - 1];
@@ -182,6 +183,7 @@
                           }
                         }
                         newTab = newTab.filter(item => item !== 0);
+                        newTab = newTab.filter(item => item !== undefined);
                         let n = newTab.length;
                         for (let l = 0; l < 4 - n; l++) {
                           newTab.unshift(0);
@@ -189,6 +191,8 @@
                       } else {
                         newTab = [0, 0, 0, 0];
                       }
+
+                      console.log(newTab);
 
                       //// on affecte les valeur du tableau à la ligne
                       for (let z = 0; z < 4; z++) {
@@ -206,7 +210,7 @@
                       let tab = [];
                       for (let j = 0; j < 4; j++) {
                       //// créer un tableau avec les valeurs de la ligne
-                        let val = $('[x="' + j + '"][y="' + i + '"]');
+                        let val = $('[x="' + i + '"][y="' + j + '"]');
                         tab.push(parseInt(val[0].innerText));
                       }
 
@@ -222,6 +226,7 @@
                         for (let k = (p - 1); k >= 0; k--) {
                           if (tab[k] == tab[k - 1]) {
                             newTab[k] = tab[k] * 2;
+                            newTab[k - 1] = 0;
                             tab[k - 1] = 0
                           } else if (tab[k] == 0) {
                             newTab[k] = tab[k - 1];
@@ -231,6 +236,8 @@
                           }
                         }
                         newTab = newTab.filter(item => item !== 0);
+                        newTab = newTab.filter(item => item !== undefined);
+
                         let n = newTab.length;
                         for (let l = 0; l < 4 - n; l++) {
                           newTab.unshift(0);
@@ -241,7 +248,7 @@
 
                       //// on affecte les valeur du tableau à la ligne
                       for (let z = 0; z < 4; z++) {
-                        var elem = $('[x="' + z + '"][y="' + i + '"]');
+                        var elem = $('[x="' + i + '"][y="' + z + '"]');
                         elem.attr('nbr', newTab[z]); // on change la valeur de l'attr nbr
                         elem.text(newTab[z]);
                       }
